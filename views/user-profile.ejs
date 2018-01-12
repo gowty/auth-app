@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>USER PROFILE</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- CUSTOM STYLES-->
+  <link href="../assets/css/custom.css" rel="stylesheet" />
+</head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="">
+        <div id="" class="navbar-header">
+          <span style="font-size:30px;color:#fff;cursor:pointer;" onclick="openNav()">&#9776;</span>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+          <li class="dropdown"><a class="dropdown-toggle" style="color:#fff;" data-toggle="dropdown" href="#"><%= user.firstname %> <%= user.lastname %><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/profile">Your Profile</a></li>
+              <li><a href="/change-password">Change Password</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- SIDE-BAR -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a style="color:#fff;font-size:23px;" href="/">Home</a>
+
+      <a style="color:#fff;font-size:23px;" href="/dashboard">Dashboard</a>
+
+      <div class="dropdown">
+        <p class="dropbtn">Posts</p>
+        <div class="dropdown-content">
+          <a href="/blogs">All Posts</a>
+          <a href="">Add New</a>
+        </div>
+      </div><br>
+
+      <div class="dropdown">
+        <p class="dropbtn">Users</p>
+        <div class="dropdown-content">
+          <a href="/all-users">All Users</a>
+          <a href="/add-new-user8345">Add New</a>
+          <a href="/profile">Your Profile</a>
+        </div>
+      </div>
+
+      <a style="color:#fff;font-size:23px;" href="/comments">Comments</a>
+
+    </div>
+    <!-- END OF SIDE-BAR -->
+
+    <div class="">
+      <!-- ERROR MSG -->
+      <div class="container">
+      <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger text-center" role="alert">
+          <%= error %>
+        </div>
+      <% } %>
+      </div>
+      <!-- END OF ERROR MSG -->
+
+      <!-- SUCCESS MSG -->
+      <div class="container">
+      <% if(success && success.length > 0){ %>
+        <div class="alert alert-success text-center" role="alert">
+          <%= success %>
+        </div>
+      <% } %>
+      </div>
+      <!-- END OF SUCCESS MSG -->
+
+      <div class="container">
+        <h2 style="text-align:center;color:#777;padding-bottom:30px;">Profile</h2>
+        <div class="container text-center">
+          <form class="form-horizontal" action="/all-users/<%= uprofile._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="users_id">USER ID</label>
+              <div class="col-sm-5">
+                <input class="form-control validate" type="text" name="edit[users_id]" value="<%= uprofile.users_id %>" readonly />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="firstname">First Name</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control validate" id="firstname" name="edit[firstname]" value="<%= uprofile.firstname %>" required >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="lastname">Last Name</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control validate" id="lastname" name="edit[lastname]" value="<%= uprofile.lastname %>" required >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="username">UserName</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control validate" id="username" name="edit[username]" value="<%= uprofile.username %>" required >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="email">Email</label>
+              <div class="col-sm-5">
+                <input type="email" class="form-control validate" id="email" name="edit[email]" value="<%= uprofile.email %>" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="role">Role </label>
+              <div class="col-sm-5">
+                <select class="form-control validate" name="edit[role]" required>
+                  <option value="<%= uprofile.role %>"><%= user.role %></option>
+                  <option value="Admin">Admin</option>
+                  <option value="Blogger">Blogger</option>
+                  <option value="Moderator">Moderator</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-5">
+                <button type="submit" class="btn btn-success form-control">Update</button>
+              </div>
+            </div>
+          </form>
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-5">
+              <form class="" action="/all-users/<%= uprofile._id %>?_method=DELETE" method="post">
+                <button type="submit" class="btn btn-danger form-control">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+      }
+    </script>
+
+  </body>
+</html>

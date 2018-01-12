@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BLOG-CMS</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- MORRIS CHART STYLES-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="">
+    <div id="" class="navbar-header">
+      <span style="font-size:30px;color:#fff;cursor:pointer;" onclick="openNav()">&#9776;</span>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+      <li class="dropdown"><a class="dropdown-toggle" style="color:#fff;" data-toggle="dropdown" href="#"><%= user.firstname %> <%= user.lastname %><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/profile">Your Profile</a></li>
+          <li><a href="/change-password">Change Password</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SIDE-BAR -->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="color:#fff;font-size:23px;" href="/">Home</a>
+
+  <a style="color:#fff;font-size:23px;" href="/dashboard">Dashboard</a>
+
+  <div class="dropdown">
+    <p class="dropbtn">Posts</p>
+    <div class="dropdown-content">
+      <a href="/posts">All Posts</a>
+      <a href="/add-new-post">Add New</a>
+    </div>
+  </div><br>
+
+  <div class="dropdown">
+    <p class="dropbtn">Users</p>
+    <div class="dropdown-content">
+      <a href="/all-users">All Users</a>
+      <a href="/add-new-user8345">Add New</a>
+      <a href="/profile">Your Profile</a>
+    </div>
+  </div>
+
+  <a style="color:#fff;font-size:23px;" href="/comments">Comments</a>
+
+</div>
+<!-- END OF SIDE-BAR -->
+
+        <div class="container">
+          <div id="page-inner">
+
+            <!-- ERROR MSG -->
+            <div class="container col-lg-12">
+            <% if(error && error.length > 0){ %>
+            	<div class="alert alert-danger text-center" role="alert">
+            		<%= error %>
+            	</div>
+            <% } %>
+            </div>
+            <!-- END OF ERROR MSG -->
+
+            <!-- SUCCESS MSG -->
+            <div class="container col-lg-12">
+            <% if(success && success.length > 0){ %>
+            	<div class="alert alert-success text-center" role="alert">
+            		<%= success %>
+            	</div>
+            <% } %>
+            </div>
+            <!-- END OF SUCCESS MSG -->
+
+
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <label class="" id="lblGreetings" style="font-size:30px;padding-top:20px;padding-bottom:5px;color:#72c02c"></label>&nbsp;&nbsp;&nbsp;
+                <span style="font-size:30px;font-weight:bold;padding-top:20px;padding-bottom:5px;color:#72c02c;"><%= user.firstname %> <%= user.lastname %></span>
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="container col-md-12">
+                <div class="" style="padding-top:12%;">
+                  <div class="text-center" style="border-style:none;">
+                    <div><span id="quote"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+
+      </div>
+
+  <script src="assets/js/jquery-1.10.2.js"></script>
+  <!-- METISMENU SCRIPTS -->
+  <script src="assets/js/jquery.metisMenu.js"></script>
+   <!-- DATA TABLE SCRIPTS -->
+  <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+  <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+
+  <script src="assets/js/custom.js"></script>
+
+  <script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+    }
+  </script>
+  <script>
+      $(document).ready(function () {
+          $('#dataTables-example').dataTable();
+      });
+  </script>
+
+  <script>
+    var myDate = new Date();
+    var hrs = myDate.getHours();
+
+    var greet;
+
+    if (hrs < 12)
+        greet = 'Good Morning,';
+    else if (hrs >= 12 && hrs <= 17)
+        greet = 'Good Afternoon,';
+    else if (hrs >= 17 && hrs <= 24)
+        greet = 'Good Evening,';
+
+    document.getElementById('lblGreetings').innerHTML =
+        '<b>' + greet + '</b>';
+  </script>
+
+  <script>
+  (function() {
+    var quotes = [
+      {
+        text: "Strength does not come from winning. Your struggles develop your strengths. When you go through hardships and decide not to surrender, that is strength.",
+        texts: "Arnold Schwarzenegger",
+      },
+      {
+        text: "There is no value in anything until it is finished.",
+        texts: "Genghis Khan",
+      },
+      {
+        text: "Climbing to the top demands strength, whether it is to the top of Mount Everest or to the top of your career.",
+        texts: "A. P. J. Abdul Kalam",
+      },
+      {
+        text: "All Birds find shelter during a rain. But Eagle avoids rain by flying above the Clouds. Problems are common, but attitude makes the difference!!!",
+        texts: "A. P. J. Abdul Kalam",
+      },
+      {
+        text: "If you can't make it good, at least make it look good.",
+        texts: "Bill Gates",
+      },
+      {
+        text: "Life is like riding a bicycle. To keep your balance you must keep moving.",
+        texts: "Albert Einstein",
+      },
+      {
+        text: "A person who is happy is not because everything is right in his life, he is happy because his attitude towards everything in his life is right.",
+        texts: "Sundar Pichai",
+      },
+      {
+        text: "Live your life not celebrating victories, but overcoming defeats",
+        texts: "Che Guevara",
+      },
+      {
+        text: "It always seems impossible until it's done.",
+        texts: "Nelson Madela",
+
+      },
+      {
+        text: "Don't watch the clock; do what it does. Keep going.",
+        texts: "Sam Levenson",
+
+      },
+      {
+        text: "You can't cross the sea merely by standing and staring at the water.",
+        texts: "Rabindranath Tagore",
+
+      },
+      {
+        text: "You are never too old to set another goal or to dream a new dream.",
+        texts: "Les Brown",
+
+      }
+    ];
+    var quote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById("quote").innerHTML =
+      '<blockquote style="font-size:22px;">'  + quote.text + '<footer style="color:#72c02c;">'+ quote.texts + '</footer>' + '</blockquote>';
+  })();
+  </script>
+
+</body>
+</html>

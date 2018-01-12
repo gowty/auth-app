@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BLOG-CMS</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- MORRIS CHART STYLES-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="">
+      <div id="" class="navbar-header">
+        <span style="font-size:30px;color:#fff;cursor:pointer;" onclick="openNav()">&#9776;</span>
+      </div>
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown"><a class="dropdown-toggle" style="color:#fff;" data-toggle="dropdown" href="#"><%= user.firstname %> <%= user.lastname %><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/profile">Your Profile</a></li>
+            <li><a href="/change-password">Change Password</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SIDE-BAR -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a style="color:#fff;font-size:23px;" href="/">Home</a>
+
+    <a style="color:#fff;font-size:23px;" href="/dashboard">Dashboard</a>
+
+    <div class="dropdown">
+      <p class="dropbtn">Posts</p>
+      <div class="dropdown-content">
+        <a href="/blogs">All Posts</a>
+        <a href="">Add New</a>
+      </div>
+    </div><br>
+
+    <div class="dropdown">
+      <p class="dropbtn">Users</p>
+      <div class="dropdown-content">
+        <a href="/all-users">All Users</a>
+        <a href="/add-new-user8345">Add New</a>
+        <a href="/profile">Your Profile</a>
+      </div>
+    </div>
+
+    <a style="color:#fff;font-size:23px;" href="/comments">Comments</a>
+
+  </div>
+    <!-- END OF SIDE-BAR -->
+
+        <div class="container">
+          <div id="page-inner">
+
+            <!-- ERROR MSG -->
+            <div class="container col-lg-12">
+            <% if(error && error.length > 0){ %>
+            	<div class="alert alert-danger text-center" role="alert">
+            		<%= error %>
+            	</div>
+            <% } %>
+            </div>
+            <!-- END OF ERROR MSG -->
+
+            <!-- SUCCESS MSG -->
+            <div class="container col-lg-12">
+            <% if(success && success.length > 0){ %>
+            	<div class="alert alert-success text-center" role="alert">
+            		<%= success %>
+            	</div>
+            <% } %>
+            </div>
+            <!-- END OF SUCCESS MSG -->
+
+
+
+
+            </div>
+          </div>
+
+      </div>
+
+  <script src="assets/js/jquery-1.10.2.js"></script>
+  <!-- METISMENU SCRIPTS -->
+  <script src="assets/js/jquery.metisMenu.js"></script>
+   <!-- DATA TABLE SCRIPTS -->
+  <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+  <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+
+  <script src="assets/js/custom.js"></script>
+
+  <script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+    }
+  </script>
+  <script>
+      $(document).ready(function () {
+          $('#dataTables-example').dataTable();
+      });
+  </script>
+
+
+</body>
+</html>

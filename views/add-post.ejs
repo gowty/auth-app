@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Add New Post</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../assets/css/login-form.css">
+
+  <!-- CUSTOM STYLES-->
+  <link href="../assets/css/custom.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/css/richtext.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../assets/js/jquery.richtext.js"></script>
+
+</head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="">
+        <div id="" class="navbar-header">
+          <span style="font-size:30px;color:#fff;cursor:pointer;" onclick="openNav()">&#9776;</span>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+          <li class="dropdown"><a class="dropdown-toggle" style="color:#fff;" data-toggle="dropdown" href="#"><%= user.firstname %> <%= user.lastname %><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/change-password">Change Password</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- SIDE-BAR -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a style="color:#fff;font-size:23px;" href="/">Home</a>
+
+      <a style="color:#fff;font-size:23px;" href="/dashboard">Dashboard</a>
+
+      <div class="dropdown">
+        <p class="dropbtn">Posts</p>
+        <div class="dropdown-content">
+          <a href="/blogs">All Posts</a>
+          <a href="">Add New</a>
+        </div>
+      </div><br>
+
+      <div class="dropdown">
+        <p class="dropbtn">Users</p>
+        <div class="dropdown-content">
+          <a href="/all-users">All Users</a>
+          <a href="/add-new-user8345">Add New</a>
+        </div>
+      </div>
+
+      <a style="color:#fff;font-size:23px;" href="/comments">Comments</a>
+
+    </div>
+    <!-- END OF SIDE-BAR -->
+
+    <div class="">
+      <!-- ERROR MSG -->
+      <div class="container">
+      <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger" role="alert">
+          <%= error %>
+        </div>
+      <% } %>
+      </div>
+      <!-- END OF ERROR MSG -->
+
+      <!-- SUCCESS MSG -->
+      <div class="container">
+      <% if(success && success.length > 0){ %>
+        <div class="alert alert-success" role="alert">
+          <%= success %>
+        </div>
+      <% } %>
+      </div>
+      <!-- END OF SUCCESS MSG -->
+
+      <form class="" action="/add-post" method="POST" enctype="multipart/form-data">
+        <div class="" style="padding-bottom:30px;">
+
+          <div class="col-md-9 col-sm-12">
+
+            <!-- TITLE -->
+            <div class="box-content">
+              <label for="title" style="font-size:22px;">Add New Post</label>
+              <input type="text" class="form-control input-md" placeholder="Your Title Here..." name="title" required>
+            </div>
+
+            <!-- CONTENT -->
+            <div class="page-wrapper box-content">
+              <textarea class="content" name="content" required></textarea>
+            </div>
+
+            <div class="box-content">
+              <button style="font-size:16px;font-weight:600;padding-top:8px;padding-bottom:20px;" type="submit" class="btn btn-success form-control" name="button">SUBMIT</button>
+            </div>
+
+          </div>
+
+          <div class="col-md-3 col-sm-12">
+
+            <!-- AUTHOR -->
+            <div class="box-content">
+              <label class="pull-left" for="author">AUTHOR</label>
+              <select name="author" class="form-control" required>
+               <option value="">None</option>
+               <% author.forEach(function(author){%>
+                 <option value="<%=author.firstname%> <%=author.lastname%>"><%=author.firstname%> <%=author.lastname%></option>
+               <%});%>
+             </select>
+            </div>
+
+            <!-- STATUS -->
+            <div class="box-content">
+              <label class="pull-left" for="status">STATUS</label>
+              <select name="status" class="form-control" required>
+                <option value="">None</option>
+                <option value="Pending Review">Pending Review</option>
+                <option value="Published">Published</option>
+                <option value="Draft">Draft</option>
+              </select>
+            </div>
+
+            <!-- CATEGORIES -->
+            <div class="box-content" style="border: 1px solid #777;margin-top:30px">
+              <label for="" style="border-bottom:1px solid #999;margin-bottom:15px;">CATEGORIES</label>
+              <div class="" style="border-bottom:1px solid #999;margin-bottom:10px;" reduried>
+                <label for="categories">
+                  <input type="checkbox" id="categories" name="categories" value="Big Data"  /> Big Data</label><br>
+                <label for="categories">
+                  <input type="checkbox" id="categories" name="categories" value="Unstructured Data"  /> Unstructured Data</label><br>
+                <label for="categories">
+                  <input type="checkbox" id="categories" name="categories" value="Structured Data" /> Structured Data</label><br>
+                <label for="categories">
+                  <input type="checkbox" id="categories" name="categories" value="Data Analytics" /> Data Analytics</label><br>
+              </div>
+              <a href="#" style="font-size:15px;font-weight:600;">+ Add New Category</a>
+            </div>
+
+            <!-- TAGS -->
+            <div class="box-content">
+              <label class="pull-left" for="tags">TAGS</label>
+              <input type="text" class="form-control" name="tags" required>
+              <p style="font-size:14px;margin-top:-20px;">Separate tags with commas</p>
+            </div>
+
+            <!-- FEATURED IMAGE -->
+            <div class="box-content">
+              <label class="pull-left" for="image">FEATURED IMAGE</label>
+              <input type="file" class="form-control" name="image" accept="image/*" required />
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+
+    </div>
+
+
+    <script>
+      function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+      }
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('.content').richText();
+    });
+    </script>
+
+  </body>
+</html>
