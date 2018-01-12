@@ -17,19 +17,22 @@
 </head>
 <body>
 
+
+
 <nav class="navbar navbar-inverse">
-  <div class="">
-    <div id="" class="navbar-header">
-      <span style="font-size:30px;color:#fff;cursor:pointer;" onclick="openNav()">&#9776;</span>
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <a class="navbar-brand active" style="font-size:20px;font-weight:900;color:#fff">  <span style="font-size:30px;color:#fff;cursor:pointer;" onclick="openNav()">&#9776;</span>&nbsp&nbsp&nbsp&nbsp<%=user.firstname%>&nbsp<%=user.lastname%></a>
     </div>
-    <ul class="nav navbar-nav pull-right">
-      <li class="dropdown"><a class="dropdown-toggle" style="color:#fff;" data-toggle="dropdown" href="#"><%= user.firstname %> <%= user.lastname %><span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/profile">Your Profile</a></li>
-          <li><a href="/change-password">Change Password</a></li>
-          <li><a href="/logout">Logout</a></li>
-        </ul>
-      </li>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" style="font-size:20px;font-weight:900;color:#fff;cursor:pointer"><span class="glyphicon glyphicon-briefcase" style="padding-right:5px;"></span>My Account</a>
+  <ul class="dropdown-menu">
+    <li><a href=""  style="font-weight:900" ><span class="	glyphicon glyphicon-user" style="padding-right:5px;"></span>Profile</a></li>
+    <li><a href="#"  style="font-weight:900" ><span class="	glyphicon glyphicon-pencil" style="padding-right:5px"></span>Edit Account</a></li>
+    <li><a href="/logout" style="font-weight:900" ><span class="	glyphicon glyphicon-log-out" style="padding-right:5px"></span>logout</a></li>
+  </ul>
+</li>
     </ul>
   </div>
 </nav>
@@ -40,7 +43,7 @@
   <a style="color:#fff;font-size:23px;" href="/">Home</a>
 
   <a style="color:#fff;font-size:23px;" href="/dashboard">Dashboard</a>
-
+<!--
   <div class="dropdown">
     <p class="dropbtn">Posts</p>
     <div class="dropdown-content">
@@ -56,7 +59,14 @@
       <a href="/add-new-user8345">Add New</a>
       <a href="/profile">Your Profile</a>
     </div>
-  </div>
+  </div> -->
+
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" style="font-size:20px;font-weight:900;color:#fff;cursor:pointer">Posts</a>
+<ul class="dropdown-menu">
+<li><a href="/posts"  style="font-weight:900" ><span class="	glyphicon glyphicon-user" style="padding-right:5px;"></span>All Posts</a></li>
+<li><a href="/add-new-post"  style="font-weight:900" ><span class="	glyphicon glyphicon-pencil" style="padding-right:5px"></span>Add New</a></li>
+</ul>
+</li>
 
   <a style="color:#fff;font-size:23px;" href="/comments">Comments</a>
 
@@ -120,100 +130,104 @@
   <script src="assets/js/custom.js"></script>
 
   <script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-    }
+  function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
 
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-    }
-  </script>
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+</script>
   <script>
-      $(document).ready(function () {
-          $('#dataTables-example').dataTable();
-      });
-  </script>
+  $(document).ready(function() {
+  $("#dataTables-example").dataTable();
+});
+</script>
 
   <script>
-    var myDate = new Date();
-    var hrs = myDate.getHours();
+  var myDate = new Date();
+var hrs = myDate.getHours();
 
-    var greet;
+var greet;
 
-    if (hrs < 12)
-        greet = 'Good Morning,';
-    else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon,';
-    else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening,';
+if (hrs < 12) greet = "Good Morning,";
+else if (hrs >= 12 && hrs <= 17) greet = "Good Afternoon,";
+else if (hrs >= 17 && hrs <= 24) greet = "Good Evening,";
 
-    document.getElementById('lblGreetings').innerHTML =
-        '<b>' + greet + '</b>';
-  </script>
+document.getElementById("lblGreetings").innerHTML = "<b>" + greet + "</b>";
+</script>
 
   <script>
   (function() {
-    var quotes = [
-      {
-        text: "Strength does not come from winning. Your struggles develop your strengths. When you go through hardships and decide not to surrender, that is strength.",
-        texts: "Arnold Schwarzenegger",
-      },
-      {
-        text: "There is no value in anything until it is finished.",
-        texts: "Genghis Khan",
-      },
-      {
-        text: "Climbing to the top demands strength, whether it is to the top of Mount Everest or to the top of your career.",
-        texts: "A. P. J. Abdul Kalam",
-      },
-      {
-        text: "All Birds find shelter during a rain. But Eagle avoids rain by flying above the Clouds. Problems are common, but attitude makes the difference!!!",
-        texts: "A. P. J. Abdul Kalam",
-      },
-      {
-        text: "If you can't make it good, at least make it look good.",
-        texts: "Bill Gates",
-      },
-      {
-        text: "Life is like riding a bicycle. To keep your balance you must keep moving.",
-        texts: "Albert Einstein",
-      },
-      {
-        text: "A person who is happy is not because everything is right in his life, he is happy because his attitude towards everything in his life is right.",
-        texts: "Sundar Pichai",
-      },
-      {
-        text: "Live your life not celebrating victories, but overcoming defeats",
-        texts: "Che Guevara",
-      },
-      {
-        text: "It always seems impossible until it's done.",
-        texts: "Nelson Madela",
-
-      },
-      {
-        text: "Don't watch the clock; do what it does. Keep going.",
-        texts: "Sam Levenson",
-
-      },
-      {
-        text: "You can't cross the sea merely by standing and staring at the water.",
-        texts: "Rabindranath Tagore",
-
-      },
-      {
-        text: "You are never too old to set another goal or to dream a new dream.",
-        texts: "Les Brown",
-
-      }
-    ];
-    var quote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quote").innerHTML =
-      '<blockquote style="font-size:22px;">'  + quote.text + '<footer style="color:#72c02c;">'+ quote.texts + '</footer>' + '</blockquote>';
-  })();
-  </script>
+  var quotes = [
+    {
+      text:
+        "Strength does not come from winning. Your struggles develop your strengths. When you go through hardships and decide not to surrender, that is strength.",
+      texts: "Arnold Schwarzenegger"
+    },
+    {
+      text: "There is no value in anything until it is finished.",
+      texts: "Genghis Khan"
+    },
+    {
+      text:
+        "Climbing to the top demands strength, whether it is to the top of Mount Everest or to the top of your career.",
+      texts: "A. P. J. Abdul Kalam"
+    },
+    {
+      text:
+        "All Birds find shelter during a rain. But Eagle avoids rain by flying above the Clouds. Problems are common, but attitude makes the difference!!!",
+      texts: "A. P. J. Abdul Kalam"
+    },
+    {
+      text: "If you can't make it good, at least make it look good.",
+      texts: "Bill Gates"
+    },
+    {
+      text:
+        "Life is like riding a bicycle. To keep your balance you must keep moving.",
+      texts: "Albert Einstein"
+    },
+    {
+      text:
+        "A person who is happy is not because everything is right in his life, he is happy because his attitude towards everything in his life is right.",
+      texts: "Sundar Pichai"
+    },
+    {
+      text: "Live your life not celebrating victories, but overcoming defeats",
+      texts: "Che Guevara"
+    },
+    {
+      text: "It always seems impossible until it's done.",
+      texts: "Nelson Madela"
+    },
+    {
+      text: "Don't watch the clock; do what it does. Keep going.",
+      texts: "Sam Levenson"
+    },
+    {
+      text:
+        "You can't cross the sea merely by standing and staring at the water.",
+      texts: "Rabindranath Tagore"
+    },
+    {
+      text:
+        "You are never too old to set another goal or to dream a new dream.",
+      texts: "Les Brown"
+    }
+  ];
+  var quote = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById("quote").innerHTML =
+    '<blockquote style="font-size:22px;">' +
+    quote.text +
+    '<footer style="color:#72c02c;">' +
+    quote.texts +
+    "</footer>" +
+    "</blockquote>";
+})();
+</script>
 
 </body>
 </html>
