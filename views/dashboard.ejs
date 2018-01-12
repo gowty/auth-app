@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body background="./img/a.jpg">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand active" style="font-size:20px;font-weight:900;color:#fff"><%=user.firstname%>&nbsp<%=user.lastname%></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" style="font-size:20px;font-weight:900;color:#fff;cursor:pointer"><span class="glyphicon glyphicon-briefcase" style="padding-right:5px;"></span>My Account</a>
+  <ul class="dropdown-menu">
+    <li><a href=""  data-toggle="modal" data-target="#myModal" style="font-weight:900" ><span class="	glyphicon glyphicon-user" style="padding-right:5px;"></span>Profile</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#myModal2" style="font-weight:900" ><span class="	glyphicon glyphicon-pencil" style="padding-right:5px"></span>Edit Account</a></li>
+    <li ><a href="" style="font-weight:900" data-toggle="modal" data-target="#myModal3"  ><form action="/del/<%= user._id%>?_method=DELETE" method="post"><button class="btn btn-default" type="submit" style="outline:none"><span class="	glyphicon glyphicon-trash" style="padding-right:5px"></span>Delete Account</button></form></a></li>
+  </ul>
+</li>
+        <li><a href="/logout" style="font-size:20px;font-weight:900;color:#fff"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+    </ul>
+  </div>
+</nav>
+<%if(success && success.length>0){%>
+  <div class="container">
+  <div class="panel panel-success">
+    <div class="panel-heading" style="text-align:center;font-weight:900"><%=success%></div>
+  </div>
+</div>
+<%}%>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b>User Name:</b>&nbsp<%=user.username%></h4>
+      </div>
+      <div class="modal-body">
+        <p><b>First Name:</b>&nbsp<%=user.lastname%></p>
+        <p><b>Last Name:</b>&nbsp<%=user.lastname%></p>
+        <p><b>Gender:</b>&nbsp<%=user.gender%></p>
+        <p><b>Mobile No:</b>&nbsp&nbsp<%=user.mobile%></p>
+        <p><b>Address:</b>&nbsp&nbsp&nbsp&nbsp&nbsp<%=user.address%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="myModal2" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b>Edit Account</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/edit/<%=user._id%>?_method=PUT" method="post">
+    <div class="form-group">
+      <label for="email">Email(username):</label>
+      <input type="email" class="form-control" value="<%=user.username%>" name="edit[username]">
+    </div>
+    <div class="form-group">
+      <label for="pwd">First Name:</label>
+      <input type="text" class="form-control" value="<%=user.firstname%>" name="edit[firstname]">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Last Name:</label>
+      <input type="text" class="form-control" value="<%=user.lastname%>" name="edit[lastname]">
+    </div>
+    <div class="form-group">
+      <label for="email">Gender:</label>
+      <select class="form-control" name="edit[gender]"  >
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+    </div>
+    <div class="form-group">
+      <label for="">Mobile No:</label>
+      <input type="number" class="form-control" value="<%=user.mobile%>" name="edit[mobile]">
+    </div>
+    <div class="form-group">
+      <label for="">Address:</label>
+      <input type="text" class="form-control" value="<%=user.address%>" name="edit[address]">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="container">
+  <div class="col-lg-12">
+  <div class="container" style="">
+      <div style="margin-top:px;" class="">
+          <div class="panel panel-info" >
+                  <div class="panel-heading">
+                      <div class="panel-title" style="font-weight:900;">Abraham Lincoln</div>
+                  </div>
+                  <div style="padding-top:30px" class="panel-body" >
+                      <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+<div class="col-lg-3"><img src="./img/c.jpg" width="200px" height="200px" alt=""></div>
+                    <div class="col-lg-9">  Abraham Lincoln (February 12, 1809 – April 15, 1865) was an American statesman and lawyer who served as the 16th President of the United States from March 1861 until his assassination in April 1865. Lincoln led the United States through its Civil War—its bloodiest war and perhaps its greatest moral, constitutional, and political crisis.[2][3] In doing so, he preserved the Union, paved the way for the abolition of slavery, strengthened the federal government, and modernized the economy.
+
+Born in Hodgenville, Kentucky, Lincoln grew up on the western frontier in Kentucky and Indiana. Largely self-educated, he became a lawyer in Illinois, a Whig Party leader, and was elected to the Illinois House of Representatives, in which he served for eight years. Elected to the United States House of Representatives in 1846, Lincoln promoted rapid modernization of the economy and opposed the Mexican–American War. After a single term, he returned to Illinois and resumed his successful law practice. Reentering politics in 1854, he became a leader in building the new Republican Party, which had a statewide majority in Illinois. As part of the 1858 campaign for US Senator from Illinois, Lincoln took part in a series of highly publicized debates with his opponent and rival, Democrat Stephen A. Douglas; Lincoln spoke out against the expansion of slavery, but lost the race to Douglas. In 1860, Lincoln secured the Republican Party presidential nomination as a moderate from a swing state, though most delegates originally favored other candidates. Though he gained very little support in the slaveholding states of the South, he swept the North and was elected president in 1860.
+                </div>      </div>
+                  </div>
+      </div>
+  </div>
+  </div>
+
+</div>
+</body>
+</html>
